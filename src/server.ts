@@ -12,7 +12,7 @@ import { handleWebhook } from "./external/apiBWebhook";
 import { getAccessToken } from "./oauth/tokenService";
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
 
@@ -71,8 +71,8 @@ console.log(" Server starting...");
 async function startServer() {
   await connectRedis();
 
-  app.listen(PORT, () => {
-    console.log(` Server running on http://localhost:${PORT}`);
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(` Server running on ${PORT}`);
   });
 }
 

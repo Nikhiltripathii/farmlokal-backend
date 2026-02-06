@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get("/health", (_req, res) => {
-  res.json({ status: "ok" });
+  res.status(200).send("ok");
 });
 
 app.get("/", (_req, res) => {

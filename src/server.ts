@@ -74,14 +74,17 @@ console.log(" Server starting...");
 
 
  
-async function startServer() {
-  await connectRedis();
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on ${PORT}`);
+});
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(` Server running on ${PORT}`);
-  });
-}
-
-startServer();
+(async () => {
+  try {
+    await connectRedis();
+    console.log("Redis ready");
+  } catch (err) {
+    console.error("Redis failed", err);
+  }
+})();
 
 
